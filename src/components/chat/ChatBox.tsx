@@ -7,9 +7,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { useChat } from 'ai/react';
 import { Bot, Send, User } from 'lucide-react';
 import React, { useEffect, useRef, useState } from 'react';
-type Props = {};
 
-const ChatBox = (props: Props) => {
+const ChatBox = () => {
   const { messages, input, handleInputChange, handleSubmit, isLoading } =
     useChat();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
