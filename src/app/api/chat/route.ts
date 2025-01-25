@@ -1,10 +1,8 @@
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText } from 'ai';
 
-// export const maxDuration = 30;
-
 const google = createGoogleGenerativeAI({
-  apiKey: 'AIzaSyC-zU7yO_PAQeH3-bovCkuvttKsF1kuk70',
+  apiKey: process.env.GEMINI_API_KEY,
 });
 
 export async function POST(req: Request) {

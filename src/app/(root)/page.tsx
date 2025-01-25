@@ -24,11 +24,18 @@ export default function ElegantChatPage() {
     if (scrollAreaRef.current) {
       scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
     }
-  }, [scrollAreaRef]); // Updated dependency
+  }, [messages]);
 
   const handleInputResize = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     handleInputChange(e);
     setInputHeight(Math.min(Math.max(e.target.scrollHeight, 60), 200));
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSubmit(e as unknown as React.FormEvent<HTMLFormElement>);
+    }
   };
 
   return (
@@ -104,6 +111,7 @@ export default function ElegantChatPage() {
             <Textarea
               value={input}
               onChange={handleInputResize}
+              onKeyPress={handleKeyPress}
               placeholder='Type your message...'
               disabled={isLoading}
               style={{ height: `${inputHeight}px` }}
